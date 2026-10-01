@@ -1,0 +1,21 @@
+3. try, catch e finally
+• try: Define o bloco de código que será monitorado quanto a possíveis exceções.
+• catch: Define o bloco de código executado caso uma exceção seja lançada no bloco try.
+• finally: Define um bloco de código que sempre será executado, independentemente de ter ocorrido uma exceção ou não. É ideal para limpezas de recursos (ex: fechar conexões com banco de dados ou liberar arquivos abertos).
+
+codigo typescript:
+
+function simularConexaoBanco() {
+    console.log("Abrindo conexão com o Banco de Dados...");
+    try {
+        console.log("Executando consulta...");
+        console.log("Consulta executada com sucesso.");
+    } catch (error: any) {
+        console.error(`Erro capturado: ${error.message}`);
+    } finally {
+       
+        console.log("Fechando conexão com o Banco de Dados com segurança.");
+        }
+}
+
+simularConexaoBanco();
