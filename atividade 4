@@ -1,0 +1,19 @@
+4. throw
+A palavra-chave throw serve para lançar manualmente uma exceção programática quando o código identifica uma violação das regras de negócio ou uma situação inválida que impede a continuação da execução regular.
+
+codigo typescript:
+
+function verificarIdadeEleitoral(idade: number): string {
+    if (idade < 0) {
+        
+        throw new Error("Idade inválida: Não é permitida idade negativa.");
+    }
+    return idade >= 16 ? "Pode votar" : "Não pode votar";
+}
+
+try {
+    console.log(verificarIdadeEleitoral(16));
+} catch (error: any) {
+    
+    console.error(`Erro de validação detectado: ${error.message}`);
+}
