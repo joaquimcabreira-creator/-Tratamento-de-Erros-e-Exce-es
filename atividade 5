@@ -1,0 +1,44 @@
+class ContaBancaria {
+    constructor(public titular: string, public saldo: number) {}
+
+    transferir(valor: number, contaDestino: ContaBancaria): void {
+        try {
+            
+            if (valor <= 0) {
+                throw new Error("O valor da transferência deve ser maior que zero.");
+            }
+
+           
+            if (valor > this.saldo) {
+                throw new Error(`Saldo insuficiente. Saldo atual: R$ ${this.saldo}. Valor solicitado: R$ ${valor}.`);
+            }
+
+           
+            this.saldo -= valor;
+            contaDestino.saldo += valor;
+            console.log(`✓ Transferência de R$ ${valor} realizada com sucesso de ${this.titular} para ${contaDestino.titular}.`);
+
+        } catch (error: any) {
+            
+            console.log(`❌ Falha na transferência de ${this.titular}: ${error.message}`);
+        }
+    }
+}
+
+
+
+const contaAna = new ContaBancaria("Ana", 500);
+const contaCarlos = new ContaBancaria("Carlos", 100);
+
+console.log("--- Situação 1: Valor inválido (Menor ou igual a zero) ---");
+contaAna.transferir(-50, contaCarlos); 
+
+console.log("\n--- Situação 2: Saldo insuficiente ---");
+contaAna.transferir(600, contaCarlos); 
+
+console.log("\n--- Situação 3: Fluxo de Sucesso ---");
+contaAna.transferir(200, contaCarlos);
+
+console.log("\n--- Saldos finais ---");
+console.log(`Saldo de ${contaAna.titular}: R$ ${contaAna.saldo}`);
+console.log(`Saldo de ${contaCarlos.titular}: R$ ${contaCarlos.saldo}`);
