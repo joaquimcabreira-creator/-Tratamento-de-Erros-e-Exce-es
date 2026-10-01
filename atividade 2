@@ -1,0 +1,21 @@
+2. Tratamento de Exceções (try/catch)
+A finalidade do tratamento de exceções é isolar o código que pode falhar e fornecer um caminho alternativo seguro, impedindo que uma falha isolada derrube a aplicação inteira.
+
+codigo typescript
+
+function converterParaNumero(texto: string): number {
+    try {
+        
+        const resultado = parseFloat(texto);
+        if (isNaN(resultado)) {
+            throw new Error("O texto fornecido não é um número válido.");
+        }
+        return resultado;
+    } catch (error: any) {
+        
+        console.warn(`Aviso de conversão: ${error.message}`);
+        return 0; 
+    }
+}
+
+console.log(converterParaNumero("67")); 
